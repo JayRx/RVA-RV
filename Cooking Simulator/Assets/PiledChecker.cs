@@ -4,31 +4,30 @@ using UnityEngine;
 
 public class PiledChecker : MonoBehaviour {
 
-    public float height;
-
-    Collider m_Collider;
-
     public GameObject belowOf;
 
     public List<GameObject> objectsOnTop;
 
+    public bool bottomObject = false;
+
     // Start is called before the first frame update
     void Start() {
-        m_Collider = GetComponent<Collider>();
-        height = m_Collider.bounds.size.y;
+
     }
 
     // Update is called once per frame
     void FixedUpdate() {
         RaycastHit hit;
         if(Physics.Raycast(transform.position, Vector3.up, out hit,  0.1f)) {
-              Debug.Log(gameObject.name + " is below of " + hit.transform.gameObject);
-              belowOf = hit.transform.gameObject;
+            Debug.Log(gameObject.name + " is below of " + hit.transform.gameObject);
+            belowOf = hit.transform.gameObject;
         } else {
-              belowOf = null;
+            belowOf = null;
         }
 
-        objectsOnTop = GetObjectsPiledOnTop();
+        if (bottomObject) {
+            objectsOnTop = GetObjectsPiledOnTop();
+        }
     }
 
     public GameObject GetObjectOnTop() {
@@ -44,6 +43,8 @@ public class PiledChecker : MonoBehaviour {
 
             PiledChecker piledCheckerScript = obj.GetComponent<PiledChecker>();
             if (piledCheckerScript == null) break;
+
+            if (objectsOnTop.Contains(obj)) break;
 
             objectsPiledOnTop.Add(obj);
 
