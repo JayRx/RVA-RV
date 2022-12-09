@@ -10,19 +10,28 @@ public class PiledChecker : MonoBehaviour {
 
     public bool bottomObject = false;
 
+    public bool drawRay = false;
+
+    private Vector3 center;
+
     // Start is called before the first frame update
     void Start() {
-
+        center = GetComponent<Collider>().bounds.center;
     }
 
     // Update is called once per frame
     void FixedUpdate() {
+        center = GetComponent<Collider>().bounds.center;
+
         RaycastHit hit;
-        if(Physics.Raycast(transform.position, Vector3.up, out hit,  0.1f)) {
+
+        if (drawRay)
+          Debug.DrawRay(center, Vector3.up, Color.green);
+
+        if(Physics.Raycast(center, Vector3.up, out hit,  0.1f)) {
             Debug.Log(gameObject.name + " is below of " + hit.transform.gameObject);
+
             belowOf = hit.transform.gameObject;
-        } else {
-            belowOf = null;
         }
 
         if (bottomObject) {
@@ -44,7 +53,7 @@ public class PiledChecker : MonoBehaviour {
             PiledChecker piledCheckerScript = obj.GetComponent<PiledChecker>();
             if (piledCheckerScript == null) break;
 
-            if (objectsOnTop.Contains(obj)) break;
+            if (objectsPiledOnTop.Contains(obj)) break;
 
             objectsPiledOnTop.Add(obj);
 
