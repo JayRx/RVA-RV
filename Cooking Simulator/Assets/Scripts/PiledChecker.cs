@@ -6,10 +6,6 @@ public class PiledChecker : MonoBehaviour {
 
     public GameObject belowOf;
 
-    public List<GameObject> objectsOnTop;
-
-    public bool bottomObject = false;
-
     public bool drawRay = false;
 
     private Vector3 center;
@@ -29,13 +25,11 @@ public class PiledChecker : MonoBehaviour {
           Debug.DrawRay(center, Vector3.up, Color.green);
 
         if(Physics.Raycast(center, Vector3.up, out hit,  0.1f)) {
-            Debug.Log(gameObject.name + " is below of " + hit.transform.gameObject);
+            //Debug.Log(gameObject.name + " is below of " + hit.transform.gameObject);
 
             belowOf = hit.transform.gameObject;
-        }
-
-        if (bottomObject) {
-            objectsOnTop = GetObjectsPiledOnTop();
+        } else {
+            belowOf = null;
         }
     }
 
