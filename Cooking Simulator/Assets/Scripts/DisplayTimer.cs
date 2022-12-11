@@ -8,7 +8,7 @@ public class DisplayTimer : MonoBehaviour {
     public TMP_Text textTimer;
 
     public float timer = 0.0f;
-    public bool isRunning = true;
+    public bool isRunning = false;
     public float starterTimer = 10.0f * 60;
 
     void Start() {
@@ -34,6 +34,11 @@ public class DisplayTimer : MonoBehaviour {
         textTimer.text = string.Format("{0:00}:{1:00}", minutes, seconds);
     }
 
+    public void SetTimer(float new_timer) {
+        timer = new_timer * 60;
+        starterTimer = new_timer * 60; 
+    }
+
     public void StartTimer() {
         isRunning = true;
     }
@@ -43,7 +48,7 @@ public class DisplayTimer : MonoBehaviour {
     }
 
     public void ResetTimer() {
-        timer = 0.0f;
+        timer = starterTimer;
     }
 
     public void TimerFinished() {
