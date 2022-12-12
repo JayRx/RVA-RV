@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
+using TMPro;
 
 public class StartGame : MonoBehaviour
 {
@@ -9,6 +10,7 @@ public class StartGame : MonoBehaviour
     public DisplayTimer gameTimer;
     public Slider sliderTime;
     public GameObject menu;
+    public TextMeshProUGUI gameOverText;
 
     // Start is called before the first frame update
     void Start()
@@ -23,5 +25,7 @@ public class StartGame : MonoBehaviour
         gT.StartTimer();
 
         menu.SetActive(false);
+        gameOverText.text = "";
+
     }
 }

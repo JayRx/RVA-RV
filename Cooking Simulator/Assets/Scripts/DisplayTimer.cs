@@ -1,11 +1,14 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 using TMPro;
 
 public class DisplayTimer : MonoBehaviour {
 
     public TMP_Text textTimer;
+    public TextMeshProUGUI gameOverText;
+    public GameObject menu;
 
     public float timer = 0.0f;
     public bool isRunning = false;
@@ -52,6 +55,7 @@ public class DisplayTimer : MonoBehaviour {
     }
 
     public void TimerFinished() {
-        Debug.Log("Time has finished!");
+        gameOverText.text = "Game Over";
+        menu.SetActive(true);
     }
 }
