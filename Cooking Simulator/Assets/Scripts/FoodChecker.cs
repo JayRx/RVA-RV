@@ -1,12 +1,16 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
+using TMPro;
 
 public class FoodChecker : MonoBehaviour
 {
     public List<GameObject> foodObjects;
-
+    public TextMeshProUGUI gameOverText;
     private PiledChecker piledCheckerScript;
+    public DisplayTimer gameTimer;
+    public GameObject menu;
 
     // Start is called before the first frame update
     void Start()
@@ -18,7 +22,10 @@ public class FoodChecker : MonoBehaviour
     void Update()
     {
         if (isPileCorrect()) {
-          Debug.Log("Hamburger Done!");
+            menu.SetActive(true);
+            gameOverText.text = "Hamburger Done!";
+            DisplayTimer gT = gameTimer.GetComponent<DisplayTimer>();
+            gT.StopTimer();
         }
     }
 
