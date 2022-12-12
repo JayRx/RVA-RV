@@ -25,6 +25,8 @@ public class DisplayTimer : MonoBehaviour {
 
             if (timer <= 0) {
               StopTimer();
+              ResetTimer();
+              TimerFinished();
             }
 
             DisplayTime();

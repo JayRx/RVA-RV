@@ -11,12 +11,18 @@ public class StartGame : MonoBehaviour
     public Slider sliderTime;
     public GameObject menu;
     public TextMeshProUGUI gameOverText;
+    public ResetPosition breadDown;
+    public ResetPosition breadUp;
+    public ResetPosition lettuce;
+    public ResetPosition tomato;
+    public ResetPosition cheese;
+    public ResetPosition meat;
 
     // Start is called before the first frame update
     void Start()
     {
         Button btn = startGameButton.GetComponent<Button>();
-		    btn.onClick.AddListener(TaskOnClick);
+		btn.onClick.AddListener(TaskOnClick);
     }
 
     void TaskOnClick(){
@@ -27,5 +33,11 @@ public class StartGame : MonoBehaviour
         menu.SetActive(false);
         gameOverText.text = "";
 
+        breadDown.ResetOriginalPosition();
+        breadUp.ResetOriginalPosition();
+        lettuce.ResetOriginalPosition();
+        tomato.ResetOriginalPosition();
+        cheese.ResetOriginalPosition();
+        meat.ResetOriginalPosition();
     }
 }
